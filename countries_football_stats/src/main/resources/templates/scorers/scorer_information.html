@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> <!-- Add Thymeleaf security namespace -->
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" 
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" 
+          crossorigin="anonymous">
+
+    <title>Scorer Profile</title>
+</head>
+
+<body>
+<div class="container">
+	  <td th:text="${scorer_name}" />
+	  from
+	  <td th:text="${scorer_team}" />
+	  has played for
+	  <td th:text="${yearsInfo.amountOfYears}" />
+	  years from
+	  <td th:text="${yearsInfo.firstDate}" />
+	  until
+	  <td th:text="${yearsInfo.lastDate}" /><br>
+	  Has scored
+	  <td th:text="${goals}" />
+	  goals with the maximum being
+	  <td th:text="${max_match_goals}" />
+	  goals in a single match and an average
+	  <td th:text="${goals_per_match}" />
+	  goals per match:<br>
+
+</div>
+
+<div class="container mt-4">
+    <h4>Goals per Year</h4>
+    <canvas id="statsChart"></canvas>
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" 
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" 
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" 
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    const statsPerYear = /*[[${stats_at_years}]]*/ [];	
+    	
+    const years = statsPerYear.map(item => item.year);
+    const goals = statsPerYear.map(item => item.goals);
+
+    const ctx = document.getElementById('statsChart').getContext('2d');
+    const goalsChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: years,
+            datasets: [{
+                label: 'Goals',
+                data: goals,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: false,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Year'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Goals'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true
+                },
+                title: {
+                    display: true,
+                    text: 'Goals'
+                }
+            }
+        }
+    });
+    /*]]>*/
+</script>
+<div class="text-center mt-4">
+	<a href="/scorers/all_scorers" class="btn btn-secondary">Back to player selection</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> <!-- Add Thymeleaf security namespace -->
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" 
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" 
+          crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <title>Select a Scorer</title>
+</head>
+
+
+
+<body>
+<div class="container">
+    <form id="scorerForm" th:action="@{/scorers/select_one}" method="get" onsubmit="return validateScorerForm()">
+        <div class="form-group">
+            <label>Select a Player:</label>
+            <select class="form-control select2-search" name="scorerInfo" id="scorerSelect">
+			    <option value="">-- Select Player --</option>
+			    <option th:each="scorer : ${scorers}" 
+			            th:value="${scorer.name + ',' + scorer.team}"
+			            th:text="${scorer.name + ' : ' + scorer.teamName}">
+			    </option>
+			</select>
+            <small id="scorerErrorMsg" class="text-danger" style="display: none;">Please select a player before submitting.</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Select</button>
+    </form>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" 
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" 
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" 
+        crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.select2-search').select2({
+            placeholder: "Search for a player...",
+            allowClear: true,
+            width: '100%'
+        });
+        
+        $('#scorerForm').submit(function() {
+            if ($('#scorerSelect').val() === '') {
+                $('#scorerErrorMsg').show();
+                return false;
+            }
+            $('#scorerErrorMsg').hide();
+            return true;
+        });
+    });
+</script>
+
+<div class="text-center mt-4">
+	<a href="/" class="btn btn-secondary">Back to main menu</a>
+</div>
+</body>
+</html>

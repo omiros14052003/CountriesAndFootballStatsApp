@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> <!-- Add Thymeleaf security namespace -->
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" 
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" 
+          crossorigin="anonymous">
+
+    <title>Country Profile</title>
+</head>
+
+<body>
+<table class="table">
+  <thead>
+    <tr>
+      <th>ISO3</th>
+      <th>Name</th>
+      <th>Capital City</th>
+      <th>Continent</th>
+      <th>Currency</th>
+      <th>Area (Sq Km)</th>
+      <th>Population</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td th:text="${country.iso3}"></td>
+      <td th:text="${country.displayName}"></td>
+      <td th:text="${country.capital}"></td>
+      <td th:text="${country.continent + ': ' + country.subregionName}"></td>
+      <td th:text="${country.currencyName + ': ' + country.currencyCode}"></td>
+      <td th:text="${country.areaSqKm}"></td>
+      <td th:text="${country.population}"></td>
+      <td th:text="${country.developedOrDeveloping}"></td>
+    </tr>
+  </tbody>
+</table>
+
+
+<div class="container">
+	  <td th:text="${country.displayName}" />
+	  has played for
+	  <td th:text="${yearsInfo.amountOfYears}" />
+	  years from
+	  <td th:text="${yearsInfo.firstDate}" />
+      until
+      <td th:text="${yearsInfo.lastDate}" />
+      <br>
+      <td th:text="${country.displayName}" />
+      has
+      <td th:text="${wins}" />
+      wins,
+      <td th:text="${losses}" />
+      losses and
+      <td th:text="${draws}" />
+      draws in
+      <td th:text="${matches}" />
+      matches<br>
+      <td th:text="${country.displayName}" />
+      has played
+      <td th:text="${home_matches}" />
+      times at home and
+      <td th:text="${away_matches}" />
+      times away<br>
+</div>
+
+
+
+<div class="container mt-4">
+    <h4>Wins/Losses/Draws/Matches Over the Years</h4>
+    <canvas id="statsChart"></canvas>
+</div>
+
+<div class="text-center my-3">
+  <button id="toggleButton" class="btn btn-default btn-outline-primary rounded-pill px-4 py-2" onclick="toggleTable()">
+    Show Matches Table & Filter
+  </button>
+</div>
+
+<div id="tableSection" style="display: none;">
+<div class="container">
+    <div class="col">
+        <label for="startYear">Start Year:</label>
+        <input type="number" id="startYear" class="form-control" placeholder="e.g. 2000">
+    </div>
+    <div class="col">
+        <label for="endYear">End Year:</label>
+        <input type="number" id="endYear" class="form-control" placeholder="e.g. 2020">
+    </div>
+    <div class="col d-flex align-items-end">
+        <button class="btn btn-primary w-100" onclick="filterByYearRange()">Filter</button>
+    </div>
+    
+    <!-- Results Table -->
+	<div class="table-responsive">
+    <table class="table table-striped" id="resultsTable">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Home Team</th>
+                <th>Score</th>
+                <th>Away Team</th>
+                <th>Tournament</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>Neutral</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="result : ${country_matches}" 
+                th:attr="data-year=${#dates.format(result.match_date, 'yyyy')}">
+                <td th:text="${result.match_date}"></td>
+                <td th:text="${result.home_team_name}"></td>
+                <td th:text="${result.home_score + ' - ' + result.away_score}"></td>
+                <td th:text="${result.away_team_name}"></td>
+                <td th:text="${result.tournament}"></td>
+                <td th:text="${result.city}"></td>
+                <td th:text="${result.country_name}"></td>
+                <td th:text="${result.neutral}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" 
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" 
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" 
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    const statsPerYear = /*[[${stats_at_years}]]*/ [];	
+    	
+    const years = statsPerYear.map(item => item.year);
+    const wins = statsPerYear.map(item => item.wins);
+    const losses = statsPerYear.map(item => item.losses);
+    const draws = statsPerYear.map(item => item.draws);
+    const matches = statsPerYear.map(item => item.matches);
+
+    const ctx = document.getElementById('statsChart').getContext('2d');
+    const winsChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: years,
+            datasets: [{
+                label: 'Wins',
+                data: wins,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: false,
+                tension: 0.3
+            },
+            {
+                label: 'Losses',
+                data: losses,
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                fill: false,
+                tension: 0.3
+            },
+            {
+                label: 'Draws',
+                data: draws,
+                borderColor: 'rgba(255, 206, 86, 1)', // Yellow
+                backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                fill: false,
+                tension: 0.3
+            },
+            {
+                label: 'Matches',
+                data: matches,
+                borderColor: 'rgba(54, 162, 235, 1)', // Blue
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                fill: false,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Year'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Wins/Losses/Draws/Matches'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true
+                },
+                title: {
+                    display: true,
+                    text: 'Wins/Losses/Draws/Matches per Year Line Chart'
+                }
+            }
+        }
+    });
+    /*]]>*/
+</script>
+
+<script>
+    function toggleTable() {
+        const section = document.getElementById('tableSection');
+        const button = document.getElementById('toggleButton');
+
+        // Toggle table visibility
+        section.style.display = section.style.display === 'none' ? 'block' : 'none';
+
+        // Toggle button color and text
+        if (section.style.display === 'block') {
+            button.classList.remove('btn-default');
+            button.classList.add('btn-primary', 'text-white');
+            button.textContent = 'Hide Matches Table & Filter';
+        } else {
+            button.classList.remove('btn-primary', 'text-white');
+            button.classList.add('btn-default');
+            button.textContent = 'Show Matches Table & Filter';
+        }
+    }
+</script>
+
+
+<script>
+    function filterByYearRange() {
+        const startYear = parseInt(document.getElementById('startYear').value);
+        const endYear = parseInt(document.getElementById('endYear').value);
+        const rows = document.querySelectorAll('#resultsTable tbody tr');
+
+        rows.forEach(row => {
+            const year = parseInt(row.getAttribute('data-year'));
+            if ((!isNaN(startYear) && year < startYear) || (!isNaN(endYear) && year > endYear)) {
+                row.style.display = "none";
+            } else {
+                row.style.display = "";
+            }
+        });
+    }
+</script>
+<div class="text-center mt-4">
+	<a href="/countries/all_countries" class="btn btn-secondary">Back to country selection</a>
+</div>
+</body>
+</html>

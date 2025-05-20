@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Country Rankings</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container py-5">
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4">Country Rankings</h2>
+
+<div class="text-center mt-4">
+    <a href="/rankings/charts" class="btn btn-primary">Top 10 Barcharts</a>
+    <a href="/rankings/scatterplot" class="btn btn-primary">Population Scatterplot</a>
+</div>
+
+
+    <form method="get" action="/rankings/stats" class="row mb-4">
+    <div class="col-md-4 offset-md-4">
+        <label for="sortSelect" class="form-label">Sort by:</label>
+        <select name="sort" id="sortSelect" class="form-select" onchange="this.form.submit()">
+            	<option value="points" th:selected="${sort == null || sort == 'points'}">Points</option>
+            	<option value="wins" th:selected="${sort == 'wins'}">Wins</option>
+            	<option value="draws" th:selected="${sort == 'draws'}">Draws</option>
+            	<option value="losses" th:selected="${sort == 'losses'}">Losses</option>
+            	<option value="totalMatches" th:selected="${sort == 'totalMatches'}">Total Matches</option>
+            	<option value="goalsFor" th:selected="${sort == 'goalsFor'}">Goals For</option>
+            	<option value="goalsAgainst" th:selected="${sort == 'goalsAgainst'}">Goals Against</option>
+            	<option value="winrate" th:selected="${sort == 'winrate'}">Win Rate</option>
+            	<option value="winsPerYear" th:selected="${sort == 'winsPerYear'}">Wins per Year</option>
+            	<option value="pointsPerYear" th:selected="${sort == 'pointsPerYear'}">Points per Year</option>
+        	</select>
+    	</div>
+	</form>
+
+
+
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered align-middle">
+                    <thead class="table-light text-center">
+                        <tr>
+                            <th>Place</th>
+                            <th>Country</th>
+                            <th>Total Matches</th>
+                            <th>Wins</th>
+                            <th>Draws</th>
+                            <th>Losses</th>
+                            <th>Goals For</th>
+                            <th>Goals Against</th>
+                            <th>Wins / Years</th>
+							<th>Points / Years</th>
+                            <th>Win Rate (%)</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="rank, iterStat : ${rankings}">
+                            <td th:text="${iterStat.index + 1}" class="text-center">1</td>
+                            <td th:text="${rank.countryName}">Country Name</td>
+                            <td th:text="${rank.totalMatches}" class="text-center">0</td>
+                            <td th:text="${rank.wins}" class="text-center">0</td>
+                            <td th:text="${rank.draws}" class="text-center">0</td>
+                            <td th:text="${rank.losses}" class="text-center">0</td>
+                            <td th:text="${rank.goalsFor}" class="text-center">0</td>
+                            <td th:text="${rank.goalsAgainst}" class="text-center">0</td>
+                            <td th:text="${#numbers.formatDecimal(rank.winsPerYear, 1, 2)}" class="text-center">0.00</td>
+							<td th:text="${#numbers.formatDecimal(rank.pointsPerYear, 1, 2)}" class="text-center">0.00</td>
+                            <td th:text="${#numbers.formatDecimal(rank.winRate * 100, 1, 2)}" class="text-center">0.00</td>
+                            <td th:text="${rank.points}" class="text-center fw-bold">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="/" class="btn btn-secondary">Back to main menu</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

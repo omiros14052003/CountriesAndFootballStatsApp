@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scatter Plot: Countries vs Points vs Population</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            margin: 0 auto;
+            padding: 20px;
+            max-width: 1200px;
+        }
+
+        canvas {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-container {
+            margin-top: 30px;
+        }
+
+        .button-container a {
+            display: inline-block;
+            margin: 10px 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-container a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Scatter Plot: Countries vs Points vs Population</h1>
+
+    <div class="container">
+        <canvas id="scatterplot"></canvas>
+    </div>
+
+    <div class="button-container">
+        <a href="/rankings/stats">Back to Country Rankings</a>
+        <a href="/">Back to Main Menu</a>
+    </div>
+
+    <script th:inline="javascript">
+        var rawData = [[${countryPoPoints}]];
+
+        var continentColors = {
+       		'Europe': 'rgba(54, 162, 235, 0.6)',
+            'South America': 'rgba(255, 99, 132, 0.6)',
+            'Asia': 'rgba(255, 206, 86, 0.6)',
+            'Africa': 'rgba(75, 192, 192, 0.6)',
+            'North America': 'rgba(153, 102, 255, 0.6)',
+            'Oceania': 'rgba(255, 159, 64, 0.6)',
+            'Antarctica': 'rgba(200, 200, 200, 0.6)', // Light gray for Antarctica
+            'Other': 'rgba(169, 169, 169, 0.6)'
+        };
+
+        var grouped = {};
+
+        rawData.forEach(function(item) {
+            if (!grouped[item.continent]) {
+                grouped[item.continent] = [];
+            }
+            grouped[item.continent].push({
+                x: item.population,
+                y: item.totalPoints,
+                countryName: item.countryName
+            });
+        });
+
+        var datasets = Object.keys(grouped).map(function(continent) {
+            return {
+                label: continent,
+                data: grouped[continent],
+                backgroundColor: continentColors[continent] || 'rgba(100,100,100,0.6)',
+                borderColor: continentColors[continent] || 'rgba(100,100,100,1)',
+                borderWidth: 1
+            };
+        });
+
+        var ctx = document.getElementById('scatterplot').getContext('2d');
+        var scatterplot = new Chart(ctx, {
+            type: 'scatter',
+            data: {
+                datasets: datasets
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        type: 'logarithmic',
+                        title: {
+                            display: true,
+                            text: 'Population'
+                        },
+                        ticks: {
+                            min: 1,
+                            callback: function(value) {
+                                return value.toLocaleString();
+                            }
+                        }
+                    },
+                    y: {
+                        type: 'logarithmic',
+                        title: {
+                            display: true,
+                            text: 'Total Points'
+                        },
+                        ticks: {
+                            min: 1,
+                            callback: function(value) {
+                                return value.toLocaleString();
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                // Get all country names from the hovered items
+                                const countries = tooltipItems.map(item => 
+                                    item.raw.countryName
+                                );
+                                // Remove duplicates and join with comma
+                                const uniqueCountries = [...new Set(countries)];
+                                return uniqueCountries.join(', ');
+                            },
+                            label: function(tooltipItem) {
+                                return `Points: ${tooltipItem.raw.y.toLocaleString()}, Population: ${tooltipItem.raw.x.toLocaleString()}`;
+                            },
+                            // This ensures all matching points are included in the tooltip
+                            filter: function(tooltipItem) {
+                                return true; // Show all items
+                            }
+                        },
+                        // This makes the tooltip show all items at the same position
+                        position: 'nearest',
+                        mode: 'point',
+                        intersect: false
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

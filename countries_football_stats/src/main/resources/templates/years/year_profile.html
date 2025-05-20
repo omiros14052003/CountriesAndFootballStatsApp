@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+          crossorigin="anonymous">
+    <style>
+        h5 { font-size: 0.95rem; margin-bottom: 0.5rem; }
+        canvas { max-width: 100%; max-height: 320px; }
+    </style>
+    <title>Year Profile</title>
+</head>
+
+<body>
+<div class="container mt-3">
+    <h5 th:text="'Games played in ' + ${year} + ': ' + ${numberOfMatches}"></h5>
+    <h5 th:text="'Draws: ' + ${numberOfDraws}"></h5>
+    <h5 th:text="'Penalty shootouts: ' + ${numberOfPenalties}"></h5>
+    <h5 th:text="'Decisive matches: ' + ${decisiveMatches}"></h5>
+    <h5 th:text="'Goals scored: ' + ${totalGoals}"></h5>
+</div>
+
+<!-- First Bar Chart -->
+<div class="container mt-4">
+    <h5 th:text="'Top 20 Countries with most matches played in ' + ${year}"></h5>
+    <canvas id="winDrawLossChart"></canvas>
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    const statCountryNames = /*[[${statCountryNames}]]*/;
+    const wins = /*[[${wins}]]*/;
+    const draws = /*[[${draws}]]*/;
+    const losses = /*[[${losses}]]*/;
+
+    new Chart(document.getElementById('winDrawLossChart'), {
+        type: 'bar',
+        data: {
+            labels: statCountryNames,
+            datasets: [
+                {
+                    label: 'Losses',
+                    data: losses,
+                    backgroundColor: 'rgba(255, 99, 132, 0.7)'
+                },
+                {
+                    label: 'Draws',
+                    data: draws,
+                    backgroundColor: 'rgba(54, 162, 235, 0.7)'
+                },
+                {
+                    label: 'Wins',
+                    data: wins,
+                    backgroundColor: 'rgba(75, 222, 172, 0.7)'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'top' },
+                title: { display: false }
+            },
+            scales: {
+                x: { stacked: true },
+                y: { 
+                    stacked: true, 
+                    beginAtZero: true, 
+                    title: { display: true, text: 'Matches' }
+                }
+            }
+        }
+    });
+    /*]]>*/
+</script>
+
+<!-- Second Bar Chart -->
+<div class="container mt-4">
+    <h5 th:text="'Top 20 Countries with most goals in ' + ${year}"></h5>
+    <canvas id="goalBreakdownChart"></canvas>
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    const goalCountryNames = /*[[${goalCountryNames}]]*/;
+    const goalCounts = /*[[${goalCounts}]]*/;
+
+    new Chart(document.getElementById('goalBreakdownChart'), {
+        type: 'bar',
+        data: {
+            labels: goalCountryNames,
+            datasets: [{
+                label: 'Goals',
+                data: goalCounts,
+                backgroundColor: 'rgba(255 , 165, 0, 0.6)',
+                borderColor: 'rgba(0, 223, 0, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'top' },
+                title: { display: true, text: 'Goals per Country in ' + /*[[${year}]]*/ }
+            },
+            scales: {
+                x: { 
+                    ticks: { font: { size: 10 } }
+                },
+                y: { 
+                    beginAtZero: true,
+                    ticks: { font: { size: 10 } }
+                }
+            }
+        }
+    });
+    /*]]>*/
+</script>
+
+<div class="text-center mt-3">
+    <a th:href="'/years/results?year=' + ${year}" class="btn btn-primary mb-2">Show [[${year}]] results</a>
+    <br>
+    <a href="/years/all_years" class="btn btn-secondary">Back to year selection</a>
+    <a href="/" class="btn btn-secondary">Back to main menu</a>
+</div>
+
+
+</body>
+</html>

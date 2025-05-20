@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Results for [[${year}]]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        h2 {
+            color: #343a40;
+        }
+        .filters {
+            margin-bottom: 20px;
+        }
+        .filter-label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="text-center">Results for [[${year}]]</h2>
+
+    <!-- Filters -->
+    <div class="filters row">
+        <div class="col-md-3">
+            <label class="filter-label" for="tournamentFilter">Filter by Tournament:</label>
+            <select id="tournamentFilter" class="form-select" onchange="filterTable()">
+                <option value="">All Tournaments</option>
+                <option th:each="tournament : ${tournaments}" th:value="${tournament}" th:text="${tournament}"></option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label class="filter-label" for="homeContinentFilter">Filter by Continent (Home Team):</label>
+            <select id="homeContinentFilter" class="form-select" onchange="filterTable()">
+                <option value="">All Continents</option>
+                <option value="Africa">Africa</option>
+                <option value="Asia">Asia</option>
+                <option value="Europe">Europe</option>
+                <option value="North America">North America</option>
+                <option value="Oceania">Oceania</option>
+                <option value="South America">South America</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label class="filter-label" for="awayContinentFilter">Filter by Continent (Away Team):</label>
+            <select id="awayContinentFilter" class="form-select" onchange="filterTable()">
+                <option value="">All Continents</option>
+                <option value="Africa">Africa</option>
+                <option value="Asia">Asia</option>
+                <option value="Europe">Europe</option>
+                <option value="North America">North America</option>
+                <option value="Oceania">Oceania</option>
+                <option value="South America">South America</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label class="filter-label" for="homeDevelopedFilter">Filter by Home Team Development:</label>
+            <select id="homeDevelopedFilter" class="form-select" onchange="filterTable()">
+                <option value="">All Development Status</option>
+                <option value="Developed">Developed</option>
+                <option value="Developing">Developing</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label class="filter-label" for="awayDevelopedFilter">Filter by Away Team Development:</label>
+            <select id="awayDevelopedFilter" class="form-select" onchange="filterTable()">
+                <option value="">All Development Status</option>
+                <option value="Developed">Developed</option>
+                <option value="Developing">Developing</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Results Table -->
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped" id="resultsTable">
+            <thead class="table-dark">
+                <tr>
+                    <th>Date</th>
+                    <th>Home Team</th>
+                    <th>Score</th>
+                    <th>Away Team</th>
+                    <th>Tournament</th>
+                    <th>City</th>
+                    <th>Country</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="match : ${matches}" 
+                    th:attr="data-tournament=${match.tournament}, data-homecontinent=${match.homeContinent}, data-awaycontinent=${match.awayContinent}, data-homedeveloped=${match.homeDeveloped_Or_Developing}, data-awaydeveloped=${match.awayDeveloped_Or_Developing}">
+                    <td th:text="${match.date}"></td>
+                    <td th:text="${match.homeTeam}"></td>
+                    <td th:text="${match.homeScore} + ' - ' + ${match.awayScore}"></td>
+                    <td th:text="${match.awayTeam}"></td>
+                    <td th:text="${match.tournament}"></td>
+                    <td th:text="${match.city}"></td>
+                    <td th:text="${match.countryName}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Back Button -->
+    <div class="text-center mt-3">
+        <a th:href="'/years/select_one?year=' + ${year}" class="btn btn-primary mb-2">Back to [[${year}]] Year Profile</a>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+    function filterTable() {
+        const tournamentVal = document.getElementById('tournamentFilter').value.toLowerCase();
+        const homeContVal = document.getElementById('homeContinentFilter').value.toLowerCase();
+        const awayContVal = document.getElementById('awayContinentFilter').value.toLowerCase();
+        const homeDevelopedVal = document.getElementById('homeDevelopedFilter').value.toLowerCase();
+        const awayDevelopedVal = document.getElementById('awayDevelopedFilter').value.toLowerCase();
+
+        const rows = document.querySelectorAll("#resultsTable tbody tr");
+
+        rows.forEach(row => {
+            const rowTournament = row.getAttribute("data-tournament").toLowerCase();
+            const rowHomeCont = row.getAttribute("data-homecontinent").toLowerCase();
+            const rowAwayCont = row.getAttribute("data-awaycontinent").toLowerCase();
+            const rowHomeDeveloped = row.getAttribute("data-homedeveloped").toLowerCase();
+            const rowAwayDeveloped = row.getAttribute("data-awaydeveloped").toLowerCase();
+
+            const matchT = !tournamentVal || rowTournament === tournamentVal;
+            const matchH = !homeContVal || rowHomeCont === homeContVal;
+            const matchA = !awayContVal || rowAwayCont === awayContVal;
+            const matchHD = !homeDevelopedVal || rowHomeDeveloped === homeDevelopedVal;
+            const matchAD = !awayDevelopedVal || rowAwayDeveloped === awayDevelopedVal;
+
+            row.style.display = (matchT && matchH && matchA && matchHD && matchAD) ? "" : "none";
+        });
+    }
+</script>
+
+</body>
+</html>

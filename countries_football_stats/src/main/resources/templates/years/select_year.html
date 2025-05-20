@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Select a Year</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <form id="yearForm" th:action="@{/years/select_one}" method="get" onsubmit="return validateYearForm()">
+        <div class="form-group">
+            <label>Select a Year:</label>
+            <select class="form-control select2-year" name="year" id="yearSelect">
+                <option value="">-- Select Year --</option>
+                <option th:each="y : ${years}" th:value="${y}" th:text="${y}"></option>
+            </select>
+            <small id="yearErrorMsg" class="text-danger" style="display: none;">Please select a year before submitting.</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Select</button>
+    </form>
+</div>
+
+<div class="text-center mt-4">
+	<a href="/" class="btn btn-secondary">Back to main menu</a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // Initialize Select2 on the year dropdown
+        $('.select2-year').select2({
+            placeholder: "Type to search years...",
+            width: '100%'
+        });
+    });
+
+    function validateYearForm() {
+        const select = document.getElementById('yearSelect');
+        const errorMsg = document.getElementById('yearErrorMsg');
+        if (select.value === '') {
+            errorMsg.style.display = 'block';
+            return false;
+        }
+        errorMsg.style.display = 'none';
+        return true;
+    }
+</script>
+
+</body>
+</html>
