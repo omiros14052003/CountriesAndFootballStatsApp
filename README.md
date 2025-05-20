@@ -1,2 +1,2 @@
 # CountriesAndFootballStatsApp
-Prototype project for the course MYE_030 at CSE UoI
+Α prototype java springboot maven project for the course MYE_030 at CSE UoI
