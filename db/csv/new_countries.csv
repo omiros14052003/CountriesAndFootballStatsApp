@@ -1,0 +1,88 @@
+ISO,ISO3,ISO_Code,FIPS,Display_Name,Official_Name,Capital,Continent,CurrencyCode,CurrencyName,Phone,Region_Code,Region_Name,Subregion_Code,Subregion_Name,Intermediate_Region_Code,Intermediate_Region_Name,Status_of_Country,Developed_Or_Developing,SIDS,LLDC,LDC,Area_SqKm,Population
+AB,ABK,900,AB,Abkhazia,Abkhazia,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+AL,ALD,901,AL,Alderney,Alderney,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+AM,AMB,902,AM,Ambazonia,Ambazonia,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+AN,AND,903,AN,Andalusia,Andalusia,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+AR,ARA,904,AR,Arameans Suryoye,Arameans Suryoye,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+AR,ART,905,AR,Artsakh,Artsakh,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+AS,AST,906,AS,Asturias,Asturias,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+AY,AYM,907,AY,Aymara,Aymara,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+BA,BAR,908,BA,Barawa,Barawa,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+BA,BAS,909,BA,Basque Country,Basque Country,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+BI,BIA,910,BI,Biafra,Biafra,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+BR,BRI,911,BR,Brittany,Brittany,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+CA,CAN,912,CA,Canary Islands,Canary Islands,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+CA,CAS,913,CA,Cascadia,Cascadia,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+CA,CAT,914,CA,Catalonia,Catalonia,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+CE,CEN,915,CE,Central Spain,Central Spain,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+CH,CHA,916,CH,Chameria,Chameria,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+CH,CHE,917,CH,Chechnya,Chechnya,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+CI,CIL,918,CI,Cilento,Cilento,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+CO,COR,919,CO,Corsica,Corsica,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+CO,COU,920,CO,County of Nice,County of Nice,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+CR,CRI,921,CR,Crimea,Crimea,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+DA,DAR,922,DA,Darfur,Darfur,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+DO,DON,923,DO,Donetsk PR,Donetsk PR,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+DÉ,DÉL,924,DÉ,Délvidék,Délvidék,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+EL,ELB,925,EL,Elba Island,Elba Island,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+FE,FEL,926,FE,Felvidék,Felvidék,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+FR,FRA,927,FR,Franconia,Franconia,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+FR,FRØ,928,FR,Frøya,Frøya,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+GA,GAL,929,GA,Galicia,Galicia,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+GO,GOT,930,GO,Gotland,Gotland,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+GO,GOZ,931,GO,Gozo,Gozo,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+GĂ,GĂG,932,GĂ,Găgăuzia,Găgăuzia,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+HI,HIT,933,HI,Hitra,Hitra,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+HM,HMO,934,HM,Hmong,Hmong,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+IR,IRA,935,IR,Iraqi Kurdistan,Iraqi Kurdistan,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+IS,ISL,936,IS,Isle of Wight,Isle of Wight,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+KA,KAB,937,KA,Kabylia,Kabylia,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+KE,KER,938,KE,Kernow,Kernow,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+KÁ,KÁR,939,KÁ,Kárpátalja,Kárpátalja,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+MA,MAD,940,MA,Madrid,Madrid,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+MA,MAN,941,MA,Manchukuo,Manchukuo,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+MA,MAN,942,MA,Manchuria,Manchuria,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+MA,MAP,943,MA,Mapuche,Mapuche,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+MA,MAT,944,MA,Matabeleland,Matabeleland,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+MA,MAU,945,MA,Maule Sur,Maule Sur,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+ME,MEN,946,ME,Menorca,Menorca,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+NO,NOR,947,NO,North Vietnam,North Vietnam,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+NO,NOR,948,NO,Northern Cyprus,Northern Cyprus,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+OC,OCC,949,OC,Occitania,Occitania,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+OR,ORK,950,OR,Orkney,Orkney,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+PA,PAD,951,PA,Padania,Padania,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+PA,PAN,952,PA,Panjab,Panjab,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+PR,PRO,953,PR,Provence,Provence,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+RA,RAE,954,RA,Raetia,Raetia,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+RE,REP,955,RE,Republic of St. Pauli,Republic of St. Pauli,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+RH,RHO,956,RH,Rhodes,Rhodes,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+RO,ROM,957,RO,Romani people,Romani people,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+RY,RYŪ,958,RY,Ryūkyū,Ryūkyū,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+RÉ,RÉU,959,RÉ,Réunion,Réunion,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+SA,SAA,960,SA,Saare County,Saare County,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+SA,SAA,961,SA,Saarland,Saarland,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+SA,SAR,962,SA,Sark,Sark,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+SA,SAU,963,SA,Saugeais,Saugeais,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+SE,SEA,964,SE,Sealand,Sealand,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+SE,SEB,965,SE,Seborga,Seborga,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+SH,SHE,966,SH,Shetland,Shetland,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+SI,SIL,967,SI,Silesia,Silesia,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+SO,SOM,968,SO,Somaliland,Somaliland,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+SO,SOU,969,SO,South Ossetia,South Ossetia,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+SU,SUR,970,SU,Surrey,Surrey,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+SZ,SZÉ,971,SZ,Székely Land,Székely Land,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+SÁ,SÁP,972,SÁ,Sápmi,Sápmi,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+TA,TAH,973,TA,Tahiti,Tahiti,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+TA,TAM,974,TA,Tamil Eelam,Tamil Eelam,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+TI,TIB,975,TI,Tibet,Tibet,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+TI,TIC,976,TI,Ticino,Ticino,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+TW,TWO,977,TW,Two Sicilies,Two Sicilies,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+UN,UNI,978,UN,United Arab Republic,United Arab Republic,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+UN,UNI,979,UN,United Koreans in Japan,United Koreans in Japan,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+WE,WES,980,WE,West Papua,West Papua,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+WE,WES,981,WE,Western Armenia,Western Armenia,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+WE,WES,982,WE,Western Isles,Western Isles,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+YN,YNY,983,YN,Ynys Môn,Ynys Môn,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+YO,YOR,984,YO,Yorkshire,Yorkshire,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+YO,YOR,985,YO,Yoruba Nation,Yoruba Nation,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
+ZA,ZAN,986,ZA,Zanzibar,Zanzibar,unknown,unknown,unknown,unknown,unknown,0,unknown,0,unknown,0,unknown,unknown,unknown,False,False,False,0,0
