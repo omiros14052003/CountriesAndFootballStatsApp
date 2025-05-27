@@ -1,9 +1,5 @@
 package team.AM_5384_5388.countries_football_stats.Services;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import team.AM_5384_5388.countries_football_stats.Datamodel.Country;
-import team.AM_5384_5388.countries_football_stats.Datamodel.CountryIsoNameDTO;
-import team.AM_5384_5388.countries_football_stats.Datamodel.CountryStatsAtYearDTO;
 import team.AM_5384_5388.countries_football_stats.Datamodel.GoalsPerYearDTO;
-import team.AM_5384_5388.countries_football_stats.Datamodel.ResultsDTO;
 import team.AM_5384_5388.countries_football_stats.Datamodel.ScorerTeamDTO;
 import team.AM_5384_5388.countries_football_stats.Datamodel.YearsDTO;
 
@@ -73,12 +65,12 @@ public class ScorersService{
 		model.addAttribute("goals_per_match", goalsPerMatch);
 		
 		YearsDTO yearsInfo = jdbcTemplate.queryForObject(
-			    "SELECT " +
-			    "    MIN(YEAR(s.match_date)) AS firstYear, " +
-			    "    MAX(YEAR(s.match_date)) AS lastYear, " +
-			    "    COUNT(DISTINCT YEAR(s.match_date)) AS totalYears " +
-			    "FROM scorers s " +
-			    "WHERE s.scorer_name = ?",
+			    "SELECT "
+			    + " MIN(YEAR(s.match_date)) AS firstYear, "
+			    + " MAX(YEAR(s.match_date)) AS lastYear, "
+			    + " COUNT(DISTINCT YEAR(s.match_date)) AS totalYears "
+			    + "FROM scorers s "
+			    + "WHERE s.scorer_name = ?",
 			    new Object[]{scorerName},
 			    (rs, rowNum) -> new YearsDTO(
 			        rs.getInt("firstYear"),

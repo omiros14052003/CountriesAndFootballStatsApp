@@ -21,8 +21,6 @@ public class ScorersController {
 	
 	@GetMapping("/all_scorers")
     public String getAllScorers(Model model) {
-		System.err.println("in");
-		System.out.println("Loading template: scorers/all_scorers");
 		scorersService.getAllScorersService(model);
         return "/scorers/all_scorers";
     }
@@ -32,7 +30,6 @@ public class ScorersController {
 		String[] parts = scorerInfo.split(",");
 	    String scorerName = parts[0];
 	    int teamId = Integer.parseInt(parts[1]);
-	    System.err.println(teamId);
 	    scorersService.showScorerInformationService(model, scorerName, teamId);
 	    return "/scorers/scorer_information";
 	}

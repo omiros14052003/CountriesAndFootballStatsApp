@@ -97,15 +97,15 @@ public class YearsService {
     }
     
     public int getDecisiveMatchesByYear(int year) {
-        String sql = "SELECT COUNT(*) FROM results " +
-                     "WHERE YEAR(match_date) = ? AND home_score <> away_score";
+        String sql = "SELECT COUNT(*) FROM results "
+        		+ "WHERE YEAR(match_date) = ? AND home_score <> away_score";
         return jdbcTemplate.queryForObject(sql, new Object[]{year}, Integer.class);
     }
     
     public List<CountryWinDrawLossDTO> getTopCountriesWinDrawLossByYear(int year) {
         String sql = """
-            SELECT
-                c.Display_Name AS countryName,
+            SELECT 
+            c.Display_Name AS countryName,
                 SUM(CASE
                     WHEN (r.home_team = c.ISO_Code AND r.home_score > r.away_score)
                       OR (r.away_team = c.ISO_Code AND r.away_score > r.home_score)
@@ -243,13 +243,13 @@ public class YearsService {
 
     
     public List<SimpleMatchDTO> getSimpleResultsByYearAndTournament(int year, String tournament) {
-        String sql = "SELECT r.match_date, r.home_team, r.away_team, r.home_score, r.away_score, r.tournament, " +
-                     "r.city, r.country, c1.Display_Name AS home_team_name, c2.Display_Name AS away_team_name, c3.Display_Name AS country_name " +
-                     "FROM results r " +
-                     "JOIN countries c1 ON r.home_team = c1.ISO_Code " +
-                     "JOIN countries c2 ON r.away_team = c2.ISO_Code " +
-                     "JOIN countries c3 ON r.country = c3.ISO_Code " +
-                     "WHERE YEAR(r.match_date) = ? AND r.tournament = ?";
+        String sql = "SELECT r.match_date, r.home_team, r.away_team, r.home_score, r.away_score, r.tournament, "
+        		+ "r.city, r.country, c1.Display_Name AS home_team_name, c2.Display_Name AS away_team_name, c3.Display_Name AS country_name "
+        		+ "FROM results r "
+        		+ "JOIN countries c1 ON r.home_team = c1.ISO_Code "
+        		+ "JOIN countries c2 ON r.away_team = c2.ISO_Code "
+        		+ "JOIN countries c3 ON r.country = c3.ISO_Code "
+        		+ "WHERE YEAR(r.match_date) = ? AND r.tournament = ?";
         
         return jdbcTemplate.query(sql, new Object[]{year, tournament}, (rs, rowNum) -> {
             SimpleMatchDTO dto = new SimpleMatchDTO();

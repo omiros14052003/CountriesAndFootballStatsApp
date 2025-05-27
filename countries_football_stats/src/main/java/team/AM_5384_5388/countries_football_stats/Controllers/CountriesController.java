@@ -26,7 +26,6 @@ public class CountriesController {
 	
 	@GetMapping("/select_one")
 	public String processField(@RequestParam int isoCode, Model model) {
-	    System.err.println(isoCode);
 	    countriesService.showCountryInformationService(model, isoCode);
 	    return "countries/country_information";
 	}

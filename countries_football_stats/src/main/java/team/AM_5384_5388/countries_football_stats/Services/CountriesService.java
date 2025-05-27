@@ -11,7 +11,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import team.AM_5384_5388.countries_football_stats.Datamodel.Country;
 import team.AM_5384_5388.countries_football_stats.Datamodel.CountryDTO;
 import team.AM_5384_5388.countries_football_stats.Datamodel.CountryIsoNameDTO;
 import team.AM_5384_5388.countries_football_stats.Datamodel.CountryStatsAtYearDTO;
